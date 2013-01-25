@@ -20,19 +20,6 @@ Based on https://github.com/bbatsov/ruby-style-guide
 
 * Use `UTF-8` as the source file encoding.
 * Use two **spaces** per indentation level. No hard tabs.
-
-    ```Ruby
-    # good
-    def some_method
-      do_something
-    end
-
-    # bad - four spaces
-    def some_method
-        do_something
-    end
-    ```
-
 * Use spaces around operators, after commas, colons and semicolons, around `{`
   and before `}`. Whitespace might be (mostly) irrelevant to the Ruby
   interpreter, but its proper use is the key to writing easily
@@ -46,10 +33,10 @@ Based on https://github.com/bbatsov/ruby-style-guide
     The only exception is when using the exponent operator:
 
     ```Ruby
-    # bad
+    # Bad.
     e = M * c ** 2
 
-    # good
+    # Good.
     e = M * c**2
     ```
 
@@ -104,18 +91,18 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Indent parameters on newlines if they are too long to fit on one line.
 
     ```Ruby
-    # Bad (too long)
+    # Bad (too long).
     def send_mail(source)
       Mailer.deliver(to: 'bob@example.com', from: 'us@example.com', subject: 'Important message', body: source.text)
     end
     
-    # Bad (doesn't separate each parameter in a method call with lots of parameters)
+    # Bad (doesn't separate each parameter in a method call with lots of parameters).
     def send_mail(source)
       Mailer.deliver(to: 'bob@example.com', from: 'us@example.com',
         subject: 'Important message', body: source.text)
     end
 
-    # Good
+    # Good.
     def send_mail(source)
       Mailer.deliver(
         to: 'bob@example.com',
@@ -127,10 +114,10 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Add underscores to large numeric literals to improve their readability.
 
     ```Ruby
-    # bad - how many 0s are there?
+    # Bad: how many 0s are there?
     num = 1000000
 
-    # good - much easier to parse for the human brain
+    # Good.
     num = 1_000_000
     ```
 
@@ -162,24 +149,24 @@ Based on https://github.com/bbatsov/ruby-style-guide
     ```Ruby
     arr = [1, 2, 3]
 
-    # bad
+    # Bad.
     for elem in arr do
       puts elem
     end
 
-    # good
+    # Good.
     arr.each { |elem| puts elem }
     ```
 
 * Never use `then` for multi-line `if/unless`.
 
     ```Ruby
-    # bad
+    # Bad.
     if some_condition then
       # body omitted
     end
 
-    # good
+    # Good.
     if some_condition
       # body omitted
     end
@@ -189,10 +176,10 @@ Based on https://github.com/bbatsov/ruby-style-guide
   It's more common and obviously more concise.
 
     ```Ruby
-    # bad
+    # Bad.
     result = if some_condition then something else something_else end
 
-    # good
+    # Good.
     result = some_condition ? something : something_else
     ```
 
@@ -201,10 +188,10 @@ Based on https://github.com/bbatsov/ruby-style-guide
   `if/else` constructs in these cases.
 
     ```Ruby
-    # bad
+    # Bad.
     some_condition ? (nested_condition ? nested_something : nested_something_else) : something_else
 
-    # good
+    # Good.
     if some_condition
       nested_condition ? nested_something : nested_something_else
     else
@@ -216,10 +203,10 @@ Based on https://github.com/bbatsov/ruby-style-guide
   the ternary operator instead.
 
     ```Ruby
-    # bad
+    # Bad.
     result = if some_condition: something else something_else end
 
-    # good
+    # Good.
     result = some_condition ? something : something_else
     ```
 
@@ -228,12 +215,12 @@ Based on https://github.com/bbatsov/ruby-style-guide
   wrong operators.)
 
     ```Ruby
-    # boolean expression
+    # Boolean expression.
     if some_condition && some_other_condition
       do_something
     end
 
-    # control flow
+    # Control flow.
     document.saved? or document.save!
     ```
 
@@ -241,18 +228,18 @@ Based on https://github.com/bbatsov/ruby-style-guide
   body.
 
     ```Ruby
-    # bad
+    # Bad.
     if some_condition
       do_something
     end
 
-    # good
+    # Good.
     do_something if some_condition
-    
-    # bad (complex expression)
+
+    # Bad. (complex expression)
     user.haves.available_only.first.pending! if update_have
-    
-    # good
+
+    # Good.
     if update_have
       have = user.haves.available_only.first
       have.pending
@@ -263,24 +250,24 @@ Based on https://github.com/bbatsov/ruby-style-guide
   flow `or`).
 
     ```Ruby
-    # bad
+    # Bad.
     do_something if !some_condition
 
-    # good
+    # Good.
     do_something unless some_condition
     ```
 
 * Never use `unless` with `else`. Rewrite these with the positive case first.
 
     ```Ruby
-    # bad
+    # Bad.
     unless success?
       puts 'failure'
     else
       puts 'success'
     end
 
-    # good
+    # Good.
     if success?
       puts 'success'
     else
@@ -291,12 +278,12 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Don't use parentheses around the condition of an `if/unless/while`.
 
     ```Ruby
-    # bad
+    # Bad.
     if (x > 10)
       # body omitted
     end
 
-    # good
+    # Good.
     if x > 10
       # body omitted
     end
@@ -306,22 +293,22 @@ Based on https://github.com/bbatsov/ruby-style-guide
   body.
 
     ```Ruby
-    # bad
+    # Bad.
     while some_condition
       do_something
     end
 
-    # good
+    # Good.
     do_something while some_condition
     ```
 
 * Favor `until` over `while` for negative conditions.
 
     ```Ruby
-    # bad
+    # Bad.
     do_something while !some_condition
 
-    # good
+    # Good.
     do_something until some_condition
     ```
 
@@ -353,23 +340,23 @@ Based on https://github.com/bbatsov/ruby-style-guide
     ```Ruby
     names = ['Bozhidar', 'Steve', 'Sarah']
 
-    # good
+    # Good.
     names.each { |name| puts name }
 
-    # bad
+    # Bad.
     names.each do |name|
       puts name
     end
 
-    # bad (same-line chain)
+    # Bad: same-line chain.
     names.select { |name| name.start_with?('S') }.map { |name| name.upcase }
 
-    # bad (combining do/end and {})
+    # Bad: combining do/end and {}.
     names.select do |name|
       name.start_with?('S')
     end.map { |name| name.upcase }
     
-    # good
+    # Good.
     names.select { |name| name.start_with('S')
       .map { |name| name.upcase }
     ```
@@ -377,12 +364,12 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Avoid `return` where not required for flow of control.
 
     ```Ruby
-    # bad
+    # Bad.
     def some_method(some_arr)
       return some_arr.size
     end
 
-    # good
+    # Good.
     def some_method(some_arr)
       some_arr.size
     end
@@ -391,7 +378,7 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Avoid `self` where not required. (It is only required when calling a self write accessor.)
 
     ```Ruby
-    # bad
+    # Bad.
     def ready?
       if self.last_reviewed_at > self.last_updated_at
         self.worker.update(self.content, self.options)
@@ -400,7 +387,7 @@ Based on https://github.com/bbatsov/ruby-style-guide
       self.status == :verified
     end
 
-    # good
+    # Good.
     def ready?
       if last_reviewed_at > last_updated_at
         worker.update(content, options)
@@ -416,20 +403,20 @@ Based on https://github.com/bbatsov/ruby-style-guide
     class Foo
       attr_accessor :options
 
-      # ok
+      # Okay: both options and self.options are equivalent here.
       def initialize(options)
         self.options = options
-        # both options and self.options are equivalent here
+        
       end
 
-      # bad
+      # Bad.
       def do_something(options = {})
         unless options[:when] == :later
           output(self.options[:message])
         end
       end
 
-      # good
+      # Good.
       def do_something(params = {})
         unless params[:when] == :later
           output(options[:message])
@@ -441,12 +428,12 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Use spaces around the `=` operator when assigning default values to method parameters:
 
     ```Ruby
-    # bad
+    # Bad.
     def some_method(arg1=:default, arg2=nil, arg3=[])
       # do something...
     end
 
-    # good
+    # Good.
     def some_method(arg1 = :default, arg2 = nil, arg3 = [])
       # do something...
     end
@@ -456,11 +443,11 @@ Based on https://github.com/bbatsov/ruby-style-guide
   line continuations at all.
 
     ```Ruby
-    # bad
+    # Bad.
     result = 1 - \
              2
 
-    # good (but still ugly)
+    # Good, but still ugly.
     result = 1 \
              - 2
     ```
@@ -468,12 +455,12 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Avoid using the return value of `=` (an assignment).
 
     ```Ruby
-    # bad - shows intended use of assignment
+    # Bad: shows intended use of assignment.
     if (foo = array.grep(/foo/))
       ...
     end
 
-    # good
+    # Good.
     foo = array.grep(/foo/)
     if foo
       ...
@@ -483,7 +470,7 @@ Based on https://github.com/bbatsov/ruby-style-guide
 * Use `||=` freely to initialize variables.
 
     ```Ruby
-    # set name to Bozhidar, only if it's nil or false
+    # Set name to Bozhidar, only if it's nil or false.
     name ||= 'Bozhidar'
     ```
 
@@ -491,41 +478,41 @@ Based on https://github.com/bbatsov/ruby-style-guide
 would happen if the current value happened to be `false`.)
 
     ```Ruby
-    # bad - would set enabled to true even if it was false
+    # Bad: would set enabled to true even if it was false.
     enabled ||= true
 
-    # good
+    # Good.
     enabled = true if enabled.nil?
     ```
 
 * Never put a space between a method name and the opening parenthesis.
 
     ```Ruby
-    # bad
+    # Bad.
     f (3 + 2) + 1
 
-    # good
+    # Good.
     f(3 + 2) + 1
     ```
 
 * The new hash literal syntax is preferred in Ruby 1.9 when your hash keys are symbols.
 
     ```Ruby
-    # bad
+    # Bad.
     hash = { :one => 1, :two => 2 }
 
-    # good
+    # Good.
     hash = { one: 1, two: 2 }
     ```
 
 * The new lambda literal syntax is preferred in Ruby 1.9.
 
     ```Ruby
-    # bad
+    # Bad.
     lambda = lambda { |a, b| a + b }
     lambda.call(1, 2)
 
-    # good
+    # Good.
     lambda = ->(a, b) { a + b }
     lambda.(1, 2)
     ```
@@ -533,10 +520,10 @@ would happen if the current value happened to be `false`.)
 * Use `_` for unused block parameters.
 
     ```Ruby
-    # bad
+    # Bad.
     result = hash.map { |k, v| v + 1 }
 
-    # good
+    # Good.
     result = hash.map { |_, v| v + 1 }
     ```
 
@@ -558,19 +545,19 @@ would happen if the current value happened to be `false`.)
   there exists a safe version of that *dangerous* method.
 
     ```Ruby
-    # bad - there is not matching 'safe' method
+    # Bad. There is not matching 'safe' method.
     class Person
       def update!
       end
     end
 
-    # good
+    # Good.
     class Person
       def update
       end
     end
 
-    # good
+    # Good.
     class Person
       def update!
       end
@@ -612,10 +599,10 @@ would happen if the current value happened to be `false`.)
 * Use `flat_map` instead of `map` + `flatten`.
 
     ```Ruby
-    # bad
+    # Bad.
     all_songs = users.map(&:songs).flatten.uniq
 
-    # good
+    # Good.
     all_songs = users.flat_map(&:songs).uniq
     ```
 
@@ -628,7 +615,7 @@ would happen if the current value happened to be `false`.)
 * Avoid superfluous comments.
 
     ```Ruby
-    # bad
+    # Bad.
     counter += 1 # increments counter by one
     ```
 
@@ -639,6 +626,7 @@ at all.
 
     ```Ruby
     # this isn't a good comment
+
     # This is a better comment.
 
 * Write comments on the line above the code, not in-line.
@@ -646,9 +634,9 @@ at all.
     ```Ruby
     # Bad.
     item.update_attribute :price, price_with_shipping # Include shipping in item price.
-    
+
     # Good.
-    
+
     # Include shipping in item price.
     item.update_attribute :price, price_with_shipping
 
@@ -719,7 +707,7 @@ at all.
 mutators.
 
     ```Ruby
-    # bad
+    # Bad.
     class Person
       def initialize(first_name, last_name)
         @first_name = first_name
@@ -735,7 +723,7 @@ mutators.
       end
     end
 
-    # good
+    # Good.
     class Person
       attr_reader :first_name, :last_name
 
@@ -749,7 +737,7 @@ mutators.
 constructor and comparison operators for you.
 
     ```Ruby
-    # good
+    # Good.
     class Person
       attr_reader :first_name, :last_name
 
@@ -778,7 +766,7 @@ to create instances of a particular class.
 * Prefer [duck-typing](http://en.wikipedia.org/wiki/Duck_typing) over inheritance.
 
     ```Ruby
-    # bad
+    # Bad.
     class Animal
       # abstract method
       def speak
@@ -799,7 +787,7 @@ to create instances of a particular class.
       end
     end
 
-    # good
+    # Good.
     class Duck
       def speak
         puts 'Quack! Quack'
@@ -869,12 +857,12 @@ everything `public` (which is the default).
 
     ```Ruby
     class TestClass
-      # bad
+      # Bad.
       def TestClass.some_method
         # body omitted
       end
 
-      # good
+      # Good.
       def self.some_other_method
         # body omitted
       end
@@ -926,7 +914,7 @@ everything `public` (which is the default).
 * Use *implicit begin blocks* where possible.
 
     ```Ruby
-    # bad
+    # Bad.
     def foo
       begin
         # main logic goes here
@@ -935,7 +923,7 @@ everything `public` (which is the default).
       end
     end
 
-    # good
+    # Good.
     def foo
       # main logic goes here
     rescue
@@ -947,7 +935,7 @@ everything `public` (which is the default).
   *contingency methods* (a term coined by Avdi Grimm).
 
     ```Ruby
-    # bad
+    # Bad.
     begin
       something_that_might_fail
     rescue IOError
@@ -960,7 +948,7 @@ everything `public` (which is the default).
       # handle IOError
     end
 
-    # good
+    # Good.
     def with_io_error_handling
        yield
     rescue IOError
@@ -975,21 +963,21 @@ everything `public` (which is the default).
 * Don't suppress exceptions.
 
     ```Ruby
-    # bad
+    # Bad.
     begin
       # an exception occurs here
     rescue SomeError
       # the rescue clause does absolutely nothing
     end
 
-    # bad
+    # Bad.
     do_something rescue nil
     ```
 
 * Avoid using `rescue` in its modifier form.
 
     ```Ruby
-    # bad - this catches all StandardError exceptions
+    # Bad. This catches all StandardError exceptions.
     do_something rescue nil
     ```
 
@@ -997,14 +985,14 @@ everything `public` (which is the default).
 * Don't use exceptions for flow of control.
 
     ```Ruby
-    # bad
+    # Bad.
     begin
       n / d
     rescue ZeroDivisionError
       puts 'Cannot divide by 0!'
     end
 
-    # good
+    # Good.
     if d.zero?
       puts 'Cannot divide by 0!'
     else
@@ -1016,7 +1004,7 @@ everything `public` (which is the default).
   `exit`, requiring you to `kill -9` the process.
 
     ```Ruby
-    # bad
+    # Bad.
     begin
       # calls to exit and kill signals will be caught (except kill -9)
       exit
@@ -1025,7 +1013,7 @@ everything `public` (which is the default).
       # exception handling
     end
 
-    # good
+    # Good.
     begin
       # a blind rescue rescues from StandardError, not Exception as many
       # programmers assume.
@@ -1033,7 +1021,7 @@ everything `public` (which is the default).
       # exception handling
     end
 
-    # also good
+    # Also good.
     begin
       # an exception occurs here
 
@@ -1047,7 +1035,7 @@ everything `public` (which is the default).
   they'll never be rescued from.
 
     ```Ruby
-    # bad
+    # Bad.
     begin
       # some code
     rescue Exception => e
@@ -1056,7 +1044,7 @@ everything `public` (which is the default).
       # some handling
     end
 
-    # good
+    # Good.
     begin
       # some code
     rescue StandardError => e
@@ -1089,11 +1077,11 @@ introducing new exception classes.
 pass parameters to their constructors, that is).
 
     ```Ruby
-    # bad
+    # Bad.
     arr = Array.new
     hash = Hash.new
 
-    # good
+    # Good.
     arr = []
     hash = {}
     ```
@@ -1102,10 +1090,10 @@ pass parameters to their constructors, that is).
 strings.
 
     ```Ruby
-    # bad
+    # Bad.
     STATES = ['draft', 'open', 'closed']
 
-    # good
+    # Good
     STATES = %w(draft open closed)
     ```
 
@@ -1123,10 +1111,10 @@ strings.
 * Prefer symbols instead of strings as hash keys.
 
     ```Ruby
-    # bad
+    # Bad.
     hash = { 'one' => 1, 'two' => 2, 'three' => 3 }
 
-    # good
+    # Good
     hash = { one: 1, two: 2, three: 3 }
     ```
 
@@ -1134,10 +1122,10 @@ strings.
 * The new hash literal syntax is preferred in Ruby 1.9 when your hash keys are symbols.
 
     ```Ruby
-    # bad
+    # Bad.
     hash = { :one => 1, :two => 2, :three => 3 }
 
-    # good
+    # Good.
     hash = { one: 1, two: 2, three: 3 }
     ```
 
@@ -1149,10 +1137,10 @@ strings.
 * Prefer string interpolation instead of string concatenation:
 
     ```Ruby
-    # bad
+    # Bad.
     email_with_name = user.name + ' <' + user.email + '>'
 
-    # good
+    # Good.
     email_with_name = "#{user.name} <#{user.email}>"
     ```
 
@@ -1160,10 +1148,10 @@ strings.
   special symbols such as `\t`, `\n`, `'`, etc.
 
     ```Ruby
-    # bad
+    # Bad.
     name = "Bozhidar"
 
-    # good
+    # Good.
     name = 'Bozhidar'
     ```
 
@@ -1172,7 +1160,7 @@ strings.
   and is always faster than `String#+`, which creates a bunch of new string objects.
 
     ```Ruby
-    # good and also fast
+    # Good and also fast.
     html = ''
     html << '<h1>Page title</h1>'
 
@@ -1200,20 +1188,23 @@ strings.
 * Use non-capturing groups when you don't use captured result of parentheses.
 
     ```Ruby
-    /(first|second)/   # bad
-    /(?:first|second)/ # good
+    # Bad.
+    /(first|second)/
+
+    # Good.
+    /(?:first|second)/
     ```
 
 * Avoid using $1-9 as it can be hard to track what they contain. Named groups
   can be used instead.
 
     ```Ruby
-    # bad
+    # Bad.
     /(regexp)/ =~ string
     ...
     process $1
 
-    # good
+    # Good.
     /(?<meaningful_var>regexp)/ =~ string
     ...
     process meaningful_var
@@ -1259,33 +1250,33 @@ strings.
   and embedded double-quotes. For multi-line strings, prefer heredocs.
 
     ```Ruby
-    # bad (no interpolation needed)
+    # Bad. No interpolation needed.
     %(<div class="text">Some text</div>)
     # should be '<div class="text">Some text</div>'
 
-    # bad (no double-quotes)
+    # Bad. No double-quotes.
     %(This is #{quality} style)
     # should be "This is #{quality} style"
 
-    # bad (multiple lines)
+    # Bad. Multiple lines.
     %(<div>\n<span class="big">#{exclamation}</span>\n</div>)
     # should be a heredoc.
 
-    # good (requires interpolation, has quotes, single line)
+    # Good (requires interpolation, has quotes, single line).
     %(<tr><td class="name">#{name}</td>)
     ```
 
 * Use `%r` only for regular expressions matching *more than* one '/' character.
 
     ```Ruby
-    # bad
+    # Bad.
     %r(\s+)
 
-    # still bad
+    # Still bad.
     %r(^/(.*)$)
     # should be /^\/(.*)$/
 
-    # good
+    # Good.
     %r(^/blog/2011/(.*)$)
     ```
 
@@ -1336,7 +1327,7 @@ strings.
   - delegate to assertive, non-magical methods:
 
     ```ruby
-    # bad
+    # Bad.
     def method_missing?(meth, *args, &block)
       if /^find_by_(?<prop>.*)/ =~ meth
         # ... lots of code to do a find_by
@@ -1345,7 +1336,7 @@ strings.
       end
     end
 
-    # good
+    # Good.
     def method_missing?(meth, *args, &block)
       if /^find_by_(?<prop>.*)/ =~ meth
         find_by(prop, *args, &block)
@@ -1369,10 +1360,10 @@ strings.
 * Use class instance variables instead of global variables.
 
     ```Ruby
-    #bad
+    # Bad.
     $foo_bar = 1
 
-    #good
+    # Good.
     class Foo
       class << self
         attr_accessor :bar
@@ -1390,3 +1381,4 @@ strings.
 * Avoid more than three levels of block nesting.
 * Be consistent. In an ideal world, be consistent with these guidelines.
 * Use common sense.
+
